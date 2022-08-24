@@ -12,11 +12,11 @@ class Player
     if game_state.straight_flush?
       game_state.all_in
     elsif game_state.flush?
-      game_state.call_amount + game_state.raise_amount(200)
+      game_state.call_amount + game_state.raise_amount(20)
     elsif game_state.straight?
-      game_state.call_amount + game_state.raise_amount(150)
+      game_state.call_amount + game_state.raise_amount(15)
     elsif game_state.three_of_a_rank?
-      game_state.call_amount + game_state.raise_amount(100)
+      game_state.call_amount + game_state.raise_amount(10)
     elsif game_state.pairs? && game_state.more_than_3_community_cards_and_our_pair_is_less_than_10_and_total_bid_higher_than(200)
       game_state.call_amount + game_state.raise_amount(10)
     elsif game_state.high_card?
