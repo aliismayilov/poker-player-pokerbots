@@ -52,8 +52,8 @@ class GameState
   def more_than_3_community_cards_and_our_pair_is_less_than_10_and_total_bid_higher_than(amount)
     community_cards.count >= 3 &&
       our_pair_rank.present? &&
-      RANKS.index(our_pair_rank) < RANKS.index("10") &&
-      call_amount >= 200
+      community_ranks.all? { |community_rank| RANKS.index(community_rank) <= RANKS.index(our_pair_rank) } &&
+      call_amount <= small_blind * 12
   end
 
   def our_pair_rank

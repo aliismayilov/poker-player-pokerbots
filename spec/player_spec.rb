@@ -156,7 +156,7 @@ RSpec.describe Player do
           "game_id":"550da1cb2d909006e90004b1",
           "round":0,
           "bet_index":0,
-          "small_blind": 10,
+          "small_blind": 100,
           "current_buy_in": 320,
           "pot": 400,
           "minimum_raise": 240,
@@ -205,7 +205,7 @@ RSpec.describe Player do
                   "suit": "spades"
               },
               {
-                  "rank": "A",
+                  "rank": "Q",
                   "suit": "hearts"
               },
               {
@@ -217,7 +217,7 @@ RSpec.describe Player do
       end
 
       it "responds with raise 10 times small_blind" do
-        expect(subject.bet_request(game_state)).to eq(480)
+        expect(subject.bet_request(game_state)).to eq(1240)
       end
     end
 
@@ -913,11 +913,24 @@ RSpec.describe Player do
                   "bet": 0
               }
           ],
-          "community_cards": []
+          "community_cards": [
+            {
+                "rank": "8",
+                "suit": "hearts"
+            },
+            {
+                "rank": "7",
+                "suit": "spades"
+            },
+            {
+                "rank": "6",
+                "suit": "hearts"
+            }
+        ]
       }
       end
 
-      it "folds" do
+      it "calls" do
         expect(subject.bet_request(game_state)).to eq(240)
       end
     end
