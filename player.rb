@@ -10,7 +10,9 @@ class Player
     game_state = GameState.new(json)
 
     if game_state.pairs?
-      game_state.raise_10_small_blind
+      game_state.call_amount + game_state.small_blind * 10
+    elsif game_state.high_card?
+      game_state.call_amount + game_state.small_blind * 4
     else
       game_state.call_amount
     end

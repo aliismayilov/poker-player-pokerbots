@@ -9,8 +9,14 @@ class GameState
     json[:current_buy_in] - json[:players][json[:in_action]][:bet] + json[:minimum_raise]
   end
 
-  def raise_10_small_blind
-    call_amount + json[:small_blind] * 10
+  def small_blind
+    json[:small_blind]
+  end
+
+  def high_card?
+    hole_cards.any? do |card|
+      card[:rank] == "A"
+    end
   end
 
   def pairs?
