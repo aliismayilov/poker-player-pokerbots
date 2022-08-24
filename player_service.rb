@@ -13,6 +13,8 @@ post "/" do
     'OK'
   elsif params[:action] == 'version'
     Player::VERSION
+  elsif params[:action] == "check"
+    'OK'
   else
     'OK'
   end
