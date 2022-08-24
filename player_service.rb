@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'json'
-require 'active_support'
+require 'active_support/all'
 require_relative 'player'
 
 set :port, 8090
