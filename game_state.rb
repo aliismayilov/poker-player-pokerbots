@@ -78,13 +78,17 @@ class GameState
     [json[:minimum_raise], small_blind * times].max
   end
 
-  def first_round_and_anybody_bet_8_times_the_small_blind?
+  def first_round_and_anybody_bet_8_times_the_small_blind_and_shitty_hand?
     community_cards.blank? && json[:players].any? do |player|
       player[:bet] > small_blind * 8
+    end && hole_cards.all? do |card|
+      RANKS.index(card[:rank]) < RANKS.index("10")
     end
   end
 
   def straight?
+    return false if community_cards.blank?
+
     community_ranks = community_cards.map { |c| c[:rank] }
     hole_ranks = hole_cards.map { |c| c[:rank] }
 
