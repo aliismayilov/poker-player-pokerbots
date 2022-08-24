@@ -61,4 +61,10 @@ class GameState
   def raise_amount(times)
     [json[:minimum_raise], small_blind * times].max
   end
+
+  def first_round_and_anybody_bet_8_times_the_small_blind?
+    community_cards.blank? && json[:players].any? do |player|
+      player[:bet] > small_blind * 8
+    end
+  end
 end
