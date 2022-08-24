@@ -9,7 +9,9 @@ class Player
   def bet_request(json)
     game_state = GameState.new(json)
 
-    if game_state.flush?
+    if game_state.straight_flush?
+      game_state.all_in
+    elsif game_state.flush?
       game_state.call_amount + game_state.raise_amount(200)
     elsif game_state.straight?
       game_state.call_amount + game_state.raise_amount(150)

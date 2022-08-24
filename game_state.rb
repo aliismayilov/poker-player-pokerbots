@@ -133,4 +133,12 @@ class GameState
       count >= 3
     end
   end
+
+  def straight_flush?
+    straight? && flush?
+  end
+
+  def all_in
+    myself[:stack]
+  end
 end
