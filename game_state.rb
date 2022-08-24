@@ -111,13 +111,26 @@ class GameState
   def straight?
     return false if community_cards.blank?
 
-    community_ranks = community_cards.map { |c| c[:rank] }
-    hole_ranks = hole_cards.map { |c| c[:rank] }
-
     sorted_ranks = (community_ranks + hole_ranks).sort_by do |rank|
       RANKS.index(rank)
     end
 
     RANKS.join.include?(sorted_ranks.join)
+  end
+
+  def hole_ranks
+    hole_cards.map { |c| c[:rank] }
+  end
+
+  def community_ranks
+    community_cards.map { |c| c[:rank] }
+  end
+
+  def three_of_a_rank?
+    return unless pairs?
+
+    (hole_ranks + community_ranks).tally.any? do |rank, count|
+      count >= 3
+    end
   end
 end
