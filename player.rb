@@ -21,7 +21,7 @@ class Player
       game_state.call_amount + game_state.raise_amount(10)
     elsif game_state.high_card?
       game_state.call_amount + game_state.raise_amount(4)
-    elsif game_state.myself[:bet] >= 150
+    elsif game_state.call_amount >= game_state.all_in
       0
     elsif game_state.promising_flush?
       game_state.call_amount
