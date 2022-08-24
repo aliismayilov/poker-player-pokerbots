@@ -57,4 +57,8 @@ class GameState
       player[:hole_cards].present?
     end
   end
+
+  def raise_amount(times)
+    [json[:minimum_raise], small_blind * times].max
+  end
 end

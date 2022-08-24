@@ -145,7 +145,7 @@ RSpec.describe Player do
       end
 
       it "responds with raise 10 times small_blind" do
-        expect(subject.bet_request(game_state)).to eq(340)
+        expect(subject.bet_request(game_state)).to eq(480)
       end
     end
 
@@ -275,7 +275,7 @@ RSpec.describe Player do
         end
 
         it "calls" do
-          expect(subject.bet_request(game_state)).to eq(280)
+          expect(subject.bet_request(game_state)).to eq(480)
         end
       end
     end
