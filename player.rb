@@ -11,6 +11,8 @@ class Player
 
     if game_state.flush?
       game_state.call_amount + game_state.raise_amount(200)
+    elsif game_state.straight?
+      game_state.call_amount + game_state.raise_amount(150)
     elsif game_state.pairs?
       game_state.call_amount + game_state.raise_amount(10)
     elsif game_state.high_card?

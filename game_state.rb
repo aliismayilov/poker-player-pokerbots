@@ -1,4 +1,20 @@
 class GameState
+  RANKS = %w[
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+    J
+    Q
+    K
+    A
+  ].freeze
+
   attr_reader :json
 
   def initialize(json)
@@ -66,5 +82,16 @@ class GameState
     community_cards.blank? && json[:players].any? do |player|
       player[:bet] > small_blind * 8
     end
+  end
+
+  def straight?
+    community_ranks = community_cards.map { |c| c[:rank] }
+    hole_ranks = hole_cards.map { |c| c[:rank] }
+
+    sorted_ranks = (community_ranks + hole_ranks).sort_by do |rank|
+      RANKS.index(rank)
+    end
+
+    RANKS.join.include?(sorted_ranks.join)
   end
 end
