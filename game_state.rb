@@ -81,13 +81,21 @@ class GameState
   def first_round_and_anybody_bet_8_times_the_small_blind_and_shitty_hand?
     community_cards.blank? && somebody_bet_small_blind?(8) && hole_cards.all? do |card|
       RANKS.index(card[:rank]) < RANKS.index("10")
-    end && !promising_flush?
+    end && !promising_flush? && !promising_straight?
   end
 
   def promising_flush?
     hole_suits = hole_cards.map { |c| c[:suit] }
 
     community_cards.blank? && hole_suits.uniq.count == 1
+  end
+
+  def promising_straight?
+    sorted_hole_ranks = hole_cards.map { |c| c[:rank] }.sort_by do |rank|
+      RANKS.index(rank)
+    end
+
+    RANKS.join.include?(sorted_hole_ranks.join)
   end
 
   def community_cards_and_anybody_bet_10_times?
