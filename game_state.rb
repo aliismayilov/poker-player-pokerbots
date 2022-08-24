@@ -165,4 +165,8 @@ class GameState
   def all_in
     myself[:stack]
   end
+
+  def we_bet_all_in?
+    myself[:stack] == 0
+  end
 end

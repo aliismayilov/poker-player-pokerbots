@@ -21,13 +21,13 @@ class Player
       game_state.call_amount + game_state.raise_amount(10)
     elsif game_state.high_card?
       game_state.call_amount + game_state.raise_amount(4)
-    elsif game_state.call_amount >= game_state.all_in
+    elsif game_state.call_amount >= game_state.all_in && !game_state.we_bet_all_in?
       0
     elsif game_state.promising_flush?
       game_state.call_amount
-    elsif game_state.first_round_and_anybody_bet_8_times_the_small_blind_and_shitty_hand?
+    elsif game_state.first_round_and_anybody_bet_8_times_the_small_blind_and_shitty_hand? && !game_state.we_bet_all_in?
       0
-    elsif game_state.community_cards_and_anybody_bet_10_times?
+    elsif game_state.community_cards_and_anybody_bet_10_times? && !game_state.we_bet_all_in?
       0
     else
       game_state.call_amount
