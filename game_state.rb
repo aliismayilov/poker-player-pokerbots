@@ -35,10 +35,15 @@ class GameState
     end
   end
 
-  def flush?
-    community_suits = community_cards.map { |c| c[:suit] }
-    hole_suits = hole_cards.map { |c| c[:suit] }
+  def community_suits
+    community_cards.map { |c| c[:suit] }
+  end
 
+  def hole_suits
+    hole_cards.map { |c| c[:suit] }
+  end
+
+  def flush?
     (community_suits + hole_suits).tally.any? do |suit, count|
       count >= 5
     end
@@ -104,9 +109,9 @@ class GameState
   end
 
   def promising_flush?
-    hole_suits = hole_cards.map { |c| c[:suit] }
-
-    community_cards.blank? && hole_suits.uniq.count == 1
+    (hole_suits + community_suits).tally.any? do |suit, count|
+      count > 1 && count >= community_cards.count
+    end
   end
 
   def promising_straight?
