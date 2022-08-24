@@ -14,7 +14,7 @@ class GameState
   end
 
   def high_card?
-    hole_cards.any? do |card|
+    community_cards.blank? && hole_cards.any? do |card|
       card[:rank] == "A"
     end
   end
@@ -22,10 +22,10 @@ class GameState
   def pairs?
     return true if hole_cards.map { |card| card[:rank] }.uniq.count == 1
 
-    return false if json[:community_cards].blank?
+    return false if community_cards.blank?
 
     hole_cards.each do |hole_card|
-      json[:community_cards].each do |community_card|
+      community_cards.each do |community_card|
         if community_card[:rank] == hole_card[:rank]
           return true
         end
@@ -33,6 +33,10 @@ class GameState
     end
 
     false
+  end
+
+  def community_cards
+    json[:community_cards]
   end
 
   def hole_cards
