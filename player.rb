@@ -1,10 +1,10 @@
 
 class Player
 
-  VERSION = "check"
+  VERSION = "call big blind"
 
   def bet_request(game_state)
-    game_state[:current_buy_in]
+    game_state[:small_blind] * 2
   end
 
   def showdown(game_state)
