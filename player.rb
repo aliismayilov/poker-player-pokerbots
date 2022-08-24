@@ -17,7 +17,7 @@ class Player
       game_state.call_amount + game_state.raise_amount(150)
     elsif game_state.three_of_a_rank?
       game_state.call_amount + game_state.raise_amount(100)
-    elsif game_state.pairs?
+    elsif game_state.pairs? && !game_state.more_than_3_community_cards_and_our_pair_is_less_than_10_and_total_bid_higher_than(200)
       game_state.call_amount + game_state.raise_amount(10)
     elsif game_state.high_card?
       game_state.call_amount + game_state.raise_amount(4)

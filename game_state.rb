@@ -44,6 +44,25 @@ class GameState
     end
   end
 
+  def more_than_3_community_cards_and_our_pair_is_less_than_10_and_total_bid_higher_than(amount)
+    community_cards.count >= 3 &&
+      our_pair_rank.present? &&
+      RANKS.index(our_pair_rank) < RANKS.index("10") &&
+      call_amount >= 200
+  end
+
+  def our_pair_rank
+    hole_ranks.each do |hole_rank|
+      community_ranks.each do |community_rank|
+        if hole_rank == community_rank
+          return hole_rank
+        end
+      end
+    end
+
+    nil
+  end
+
   def pairs?
     return true if hole_cards.map { |card| card[:rank] }.uniq.count == 1
 
