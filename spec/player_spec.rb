@@ -73,7 +73,7 @@ RSpec.describe Player do
       end
 
       it "responds with call" do
-        expect(subject.bet_request(game_state)).to eq(480)
+        expect(subject.bet_request(game_state)).to eq(240)
       end
     end
 
@@ -145,7 +145,7 @@ RSpec.describe Player do
       end
 
       it "responds with raise 10 times small_blind" do
-        expect(subject.bet_request(game_state)).to eq(580)
+        expect(subject.bet_request(game_state)).to eq(340)
       end
     end
 
@@ -217,7 +217,7 @@ RSpec.describe Player do
       end
 
       it "calls" do
-        expect(subject.bet_request(game_state)).to eq(480)
+        expect(subject.bet_request(game_state)).to eq(240)
       end
 
       context "no community cards" do
@@ -275,7 +275,7 @@ RSpec.describe Player do
         end
 
         it "calls" do
-          expect(subject.bet_request(game_state)).to eq(520)
+          expect(subject.bet_request(game_state)).to eq(280)
         end
       end
     end
@@ -348,7 +348,7 @@ RSpec.describe Player do
       end
 
       it "responds raises 200 times small blind" do
-        expect(subject.bet_request(game_state)).to eq(2480)
+        expect(subject.bet_request(game_state)).to eq(2240)
       end
     end
   end

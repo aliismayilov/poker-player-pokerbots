@@ -6,7 +6,7 @@ class GameState
   end
 
   def call_amount
-    json[:current_buy_in] - json[:players][json[:in_action]][:bet] + json[:minimum_raise]
+    json[:current_buy_in] - json[:players][json[:in_action]][:bet]
   end
 
   def small_blind
