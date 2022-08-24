@@ -19,6 +19,8 @@ class Player
       game_state.call_amount + game_state.raise_amount(4)
     elsif game_state.first_round_and_anybody_bet_8_times_the_small_blind_and_shitty_hand?
       0
+    elsif game_state.community_cards_and_anybody_bet_10_times?
+      0
     else
       game_state.call_amount
     end

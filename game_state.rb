@@ -79,10 +79,18 @@ class GameState
   end
 
   def first_round_and_anybody_bet_8_times_the_small_blind_and_shitty_hand?
-    community_cards.blank? && json[:players].any? do |player|
-      player[:bet] > small_blind * 8
-    end && hole_cards.all? do |card|
+    community_cards.blank? && somebody_bet_small_blind?(8) && hole_cards.all? do |card|
       RANKS.index(card[:rank]) < RANKS.index("10")
+    end
+  end
+
+  def community_cards_and_anybody_bet_10_times?
+    community_cards.present? && somebody_bet_small_blind?(10)
+  end
+
+  def somebody_bet_small_blind?(times)
+    json[:players].any? do |player|
+      player[:bet] > small_blind * times
     end
   end
 
