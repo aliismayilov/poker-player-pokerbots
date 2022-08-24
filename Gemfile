@@ -13,3 +13,5 @@ gem 'puma'
 gem 'reel'
 gem 'http'
 gem 'webrick'
+
+gem "activesupport", "~> 7.0"

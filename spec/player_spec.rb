@@ -1,4 +1,5 @@
 require "spec_helper"
+require_relative "../player"
 
 RSpec.describe Player do
   subject { described_class.new }
@@ -71,7 +72,7 @@ RSpec.describe Player do
     end
 
     it "responds with call" do
-      expect(subject.bet_request(game_state)).to eq 
+      expect(subject.bet_request(game_state)).to eq(240)
     end
   end
 end

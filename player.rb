@@ -1,7 +1,7 @@
 
 class Player
 
-  VERSION = "minimum raise"
+  VERSION = "Symbolize keys"
 
   def bet_request(game_state)
     game_state[:minimum_raise]
