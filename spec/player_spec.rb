@@ -73,7 +73,7 @@ RSpec.describe Player do
       end
 
       it "responds with call" do
-        expect(subject.bet_request(game_state)).to eq(240)
+        expect(subject.bet_request(game_state)).to eq(480)
       end
     end
   end
