@@ -19,6 +19,15 @@ class GameState
     end
   end
 
+  def flush?
+    community_suits = community_cards.map { |c| c[:suit] }
+    hole_suits = hole_cards.map { |c| c[:suit] }
+
+    (community_suits + hole_suits).tally.any? do |suit, count|
+      count >= 5
+    end
+  end
+
   def pairs?
     return true if hole_cards.map { |card| card[:rank] }.uniq.count == 1
 
